@@ -1,13 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import pytest
 
 
 @pytest.fixture()
 def driver():
-    browser = webdriver.Chrome()
+    options = Options()
+    options.add_argument('--headless')
+    browser = webdriver.Chrome(options=options)
     browser.implicitly_wait(5)
     browser.maximize_window()
     yield browser
